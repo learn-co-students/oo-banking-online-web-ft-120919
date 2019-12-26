@@ -23,15 +23,17 @@ class Transfer
     end
   end
 #can execute a successful transaction between two accounts
-# each transfer can only happen once -- used if @status == "pending"
+# each transfer can only happen once
+#can execute a successful transaction between two accounts
+#rejects a transfer if the sender does not have enough funds (does not have a valid account)
   def execute_transaction
-    if @sender.balance > @amount && @status == "pending"
-      @sender.balance -= @amount
-      @receiver.balance += @amount
-      @status = "complete"
+    if valid? && sender.balance > amount && self.status == "pending"
+      sender.balance -= amount
+      receiver.balance += amount
+      self.status = "complete"
     else
-      @status = "rejected"
-      return "Transaction rejected. Please check your account balance."
+      self.status = "rejected"
+    "Transaction rejected. Please check your account balance."
     end
   end
   def reverse_transfer
