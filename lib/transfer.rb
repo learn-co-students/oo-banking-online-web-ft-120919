@@ -1,3 +1,3 @@
 class Transfer
-  # your code here
+  if bank_account = approve
 end
