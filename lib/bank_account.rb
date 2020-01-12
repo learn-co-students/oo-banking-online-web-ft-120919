@@ -1,3 +1,4 @@
 class BankAccount
+  attr
 
 end
